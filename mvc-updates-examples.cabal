@@ -1,0 +1,49 @@
+Name: mvc-updates-examples
+Version: 1.0.0
+Cabal-Version: >=1.8.0.2
+Build-Type: Simple
+License: BSD3
+License-File: LICENSE
+Copyright: 2014 Gabriel Gonzalez
+Author: Gabriel Gonzalez
+Maintainer: Gabriel439@gmail.com
+Bug-Reports: https://github.com/Gabriel439/Haskell-MVC-Updates-Examples-Library/issues
+Synopsis: Examples for the @mvc-updates@ library
+Description: Examples for the @mvc-updates@ library
+Category: Control, Concurrency
+Data-Dir: img
+Data-Files:
+    frame0.png,
+    frame1.png,
+    frame2.png,
+    frame3.png,
+    island.jpg
+Source-Repository head
+    Type: git
+    Location: https://github.com/Gabriel439/Haskell-MVC-Updates-Examples-Library
+
+Executable mvc-spreadsheet-example
+    Main-Is: MainSpreadsheet.hs
+    Hs-Source-Dirs: src
+    Build-Depends:
+        base           >= 4       && < 5   ,
+        async          >= 2.0.0   && < 2.1 ,
+        foldl          >= 1.0.5   && < 1.1 ,
+        gtk            >= 0.12.4  && < 0.13,
+        lens-family-th >= 0.3.0.0 && < 0.4 ,
+        mvc            >= 1.0.1   && < 1.1 ,
+        mvc-updates    >= 1.0.0   && < 1.1
+    Other-Modules: MVC.Updates.Example.Spreadsheet
+    GHC-Options: -O2 -Wall -threaded
+
+Executable mvc-sdl-example
+    Main-Is: MainSDL.hs
+    HS-Source-Dirs: src
+    Build-Depends:
+        base           >= 4       && < 5   ,
+        foldl          >= 1.0.5   && < 1.1 ,
+        mvc            >= 1.0.1   && < 1.1 ,
+        mvc-updates    >= 1.0.0   && < 1.1 ,
+        SDL            >= 0.6.5   && < 0.7 ,
+        SDL-image      >= 0.6.1   && < 0.7
+    Other-Modules: MVC.Updates.Example.SDL, Paths_mvc_updates_examples
