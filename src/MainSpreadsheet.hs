@@ -20,13 +20,14 @@ data Out = O
     , _o2 :: Double
     , _o3 :: Double
     , _o4 :: Double
+    , _o5 :: Double
     }
 makeLenses ''Out
-o1, o2, o3, o4 :: Functor f => (Double -> f Double) -> (Out -> f Out)
+o1, o2, o3, o4, o5 :: Functor f => (Double -> f Double) -> (Out -> f Out)
 
 model :: Model () In Out
 model = asPipe $ loop $ \(I i1 i2 i3 i4) -> do
-    return $ O (i1 + i2) (i2 * i3) (i3 - i4) (max i4 i1)
+    return $ O (i1 + i2) (i2 * i3) (i3 - i4) (max i4 i1) (sum [i1, i2, i3, i4])
 
 main :: IO ()
 main = runMVC () model $ do
@@ -37,5 +38,6 @@ main = runMVC () model $ do
       <> fmap (handles o2) outCell
       <> fmap (handles o3) outCell
       <> fmap (handles o4) outCell
+      <> fmap (handles o5) outCell
     liftIO go
     return (v, c)

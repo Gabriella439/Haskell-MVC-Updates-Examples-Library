@@ -10,7 +10,7 @@ import MVC.Updates.Example.SDL
 main :: IO ()
 main = runMVC () (asPipe cat) $ do
     (cloudOut, mouse) <- sdl
-    let seconds = On length (tick (1 / 60))
+    let seconds = on length (tick (1 / 60))
 
         toFrame n = case (n `div` 15) `rem` 4 of
             0 -> Frame0
