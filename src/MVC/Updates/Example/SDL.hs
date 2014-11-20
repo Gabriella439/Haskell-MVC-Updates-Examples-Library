@@ -54,6 +54,6 @@ sdl = managed $ \k -> withInit [InitVideo, InitEventthread] $ do
                 _                   -> mouseMotion
 
         mouse :: Updatable Mouse
-        mouse = On (lastDef (Mouse 320 240)) (producer Single mouseMotion)
+        mouse = on (lastDef (Mouse 320 240)) (producer Single mouseMotion)
 
     k (view, mouse) <* quit

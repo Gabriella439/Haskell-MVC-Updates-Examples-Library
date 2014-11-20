@@ -5,12 +5,12 @@
  import Control.Concurrent.MVar (newEmptyMVar, putMVar, takeMVar)
  import Control.Concurrent.Async (async, wait)
  import Control.Foldl (lastDef)
- import Graphics.UI.Gtk
- import MVC
- import MVC.Updates
+ import Graphics.UI.Gtk as GTK
+ import MVC as MVC
+ import MVC.Updates as MVC
  
  makeInCell :: VBox -> Updatable Double
- makeInCell vBox = On (lastDef 0) $ managed $ \k -> do
+ makeInCell vBox = MVC.on (lastDef 0) $ managed $ \k -> do -- On
      (output, input) <- spawn Unbounded
      spinButton <- spinButtonNewWithRange 0 100 1
      _ <- onValueSpinned spinButton $ do
@@ -42,7 +42,7 @@
      a    <- async $ k (makeInCell vBoxL, makeOutCell vBoxR, putMVar mvar ())
      takeMVar mvar
  
-     _ <- on window deleteEvent $ do
+     _ <- GTK.on window deleteEvent $ do -- on
          liftIO mainQuit
          return False
      widgetShowAll window
